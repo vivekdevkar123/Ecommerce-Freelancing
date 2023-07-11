@@ -1,0 +1,124 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome {% endblock %}
+
+{% block content %}
+
+
+<div class="heading" style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
+    <h2>NEWLY ADDED PRODUCTS</h2>
+</div>
+
+<div class="owl-carousel owl-theme" style="margin-top: 30px;">
+
+    {% for product in products %}
+    <div class="item">
+        <div class="card" style="width: 18rem;">
+            <img src="/media/{{product.image}}" class="card-img-top" alt="..." height="200" width="500">
+            <div class="card-body">
+                <h5 class="card-title">{{product.product_name}}</h5>
+                <p class="card-text">{{product.desc}}</p>
+                <p class="card-text">Category : {{product.category}}</p>
+                <p class="card-text">Price : {{product.price}}Rs</p>
+                <button class="btn btn-outline-success m-2 cart" id="pr{{product.product_id}}">Add To Cart</button>
+                <a href="productview/{{product.product_id}}" class="btn btn-outline-info">View Product</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+<div class="heading" style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
+    <h2>ELECTRONICS GADGETS</h2>
+</div>
+
+<div class="owl-carousel owl-theme" style="margin-top: 30px;">
+
+    {% for product in products %}
+    <div class="item">
+        <div class="card" style="width: 18rem;">
+            <img src="/media/{{product.image}}" class="card-img-top" alt="..." height="200" width="500">
+            <div class="card-body">
+                <h5 class="card-title">{{product.product_name}}</h5>
+                <p class="card-text">{{product.desc}}</p>
+                <p class="card-text">Category : {{product.category}}</p>
+                <p class="card-text">Price : {{product.price}}Rs</p>
+                <button class="btn btn-outline-success m-2 cart" id="pr{{product.product_id}}">Add To Cart</button>
+                <a href="productview/{{product.product_id}}" class="btn btn-outline-info">View Product</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+<div class="heading" style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
+    <h2>DAILY NEEDS GROSARY</h2>
+</div>
+
+<div class="owl-carousel owl-theme" style="margin-top: 30px;">
+
+    {% for product in products %}
+    <div class="item">
+        <div class="card" style="width: 18rem;">
+            <img src="/media/{{product.image}}" class="card-img-top" alt="..." height="200" width="500">
+            <div class="card-body">
+                <h5 class="card-title">{{product.product_name}}</h5>
+                <p class="card-text">{{product.desc}}</p>
+                <p class="card-text">Category : {{product.category}}</p>
+                <p class="card-text">Price : {{product.price}}Rs</p>
+                <button class="btn btn-outline-success m-2 cart" id="pr{{product.product_id}}">Add To Cart</button>
+                <a href="productview/{{product.product_id}}" class="btn btn-outline-info">View Product</a>
+            </div>
+        </div>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+
+
+
+{% endblock %}
+
+
+{%block js%}
+
+<script>
+    console.log("working");
+
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+    }
+    else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    }
+
+    $('.cart').click(function () {
+        console.log("clicked");
+        var idstr = this.id.toString();
+        console.log(idstr);
+        if (cart[idstr] != undefined) {
+            cart[idstr] = cart[idstr] + 1;
+        }
+        else {
+            cart[idstr] = 1;
+        }
+        console.log(cart);
+        localStorage.setItem('cart', JSON.stringify(cart));
+        document.getElementById('cart').innerHTML = Object.keys(cart).length;
+    });
+
+    $('#popcart').popover();
+    document.getElementById("popcart").setAttribute('data-content', '<h6>Cart for your items see your items added in cart</h6>');
+</script>
+
+{%endblock%}

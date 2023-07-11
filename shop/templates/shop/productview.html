@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+
+{% block title %} Welcome {% endblock %}
+
+{% block content %}
+
+
+<img src="/media/{{product.image}}" alt="">
+<br><br><br>
+<h1>Product Name : {{product.product_name}}</h1>
+<br>
+<h2>Product Price : {{product.price}}</h2>
+
+
+
+
+{% endblock %}
