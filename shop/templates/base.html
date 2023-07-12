@@ -21,8 +21,6 @@
     crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
-  <link rel="stylesheet" href="{% static 'css/header.css' %}">
-
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js"
     integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA=="
     crossorigin="anonymous" referrerpolicy="no-referrer"></script>
@@ -30,12 +28,44 @@
 </head>
 
 <body>
+
+  <style>
+    .popover-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .popover-content {
+      margin-top: 10px;
+    }
+
+    .popover .close {
+      position: absolute;
+      top: 0;
+      right: 0;
+      padding: 5px;
+      background-color: #fff;
+      border: none;
+      font-size: 20px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .button-group {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+    }
+  </style>
+
   {%include 'header.html'%}
 
   {%block content%} {%endblock%}
 
-  {% include 'footer.html' %}
 
+  {% include 'footer.html' %}
 
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
@@ -54,9 +84,9 @@
 
   <script src="{% static 'js/owl_crouser.js' %}"></script>
 
-  {%block js %} {%endblock%}
+  {% block js %}
 
-
+  {%endblock%}
 </body>
 
 </html>

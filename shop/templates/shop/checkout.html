@@ -1,12 +1,124 @@
-{% extends 'base.html' %} 
+{% extends 'base.html' %}
 
 {% block title %} Welcome {% endblock %}
 
-{% block content %} 
+{% block content %}
+
+<div class="heading" style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
+    <h2>Step 1 : Verify Your items</h2>
+</div>
 
 
-<h1>This is checkout page..</h1>
+<ol class="list-group list-group-numbered my-3" id="item">
+
+</ol>
 
 
+<div class="heading" style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
+    <h2>Step 2 : Fill Address Details and Contact Details</h2>
+</div>
 
+
+<div class="address-form" style="margin: 30px; padding: 30px; border: solid black 2px;">
+    <form class="row g-3" method="post" action="/checkout/">
+        {% csrf_token %}
+        <input type="hidden" id="itemsJson" name="itemsJson">
+        <div class="col-md-6">
+            <label for="inputName" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="inputName" name="inputName">
+        </div>
+        <div class="col-md-6">
+            <label for="inputEmail" class="form-label">Email</label>
+            <input type="email" class="form-control" id="inputEmail" name="inputEmail">
+        </div>
+        <div class="col-12">
+            <label for="inputPhone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="inputPhone" name="inputPhone">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress1" class="form-label">Address Line 1</label>
+            <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St" name="inputAddress1">
+        </div>
+        <div class="col-12">
+            <label for="inputAddress2" class="form-label">Address Line 2</label>
+            <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor"
+                name="inputAddress2">
+        </div>
+        <div class="col-md-6">
+            <label for="inputCity" class="form-label">City</label>
+            <input type="text" class="form-control" id="inputCity" name="inputCity">
+        </div>
+        <div class="col-md-4">
+            <label for="inputState" class="form-label">State</label>
+            <input type="text" class="form-control" id="inputState" name="inputState">
+        </div>
+        <div class="col-md-2">
+            <label for="inputZip" class="form-label">Zip Code</label>
+            <input type="text" class="form-control" id="inputZip" name="inputZip">
+        </div>
+
+        <div class="col-12">
+            <button type="submit" class="btn btn-success">Place Order</button>
+        </div>
+    </form>
+</div>
+
+
+{% if thank %}
+<script>
+    alert("Your order has been placed thank your for shoping with us. Your order id is {{id}} use it to track your order")
+    localStorage.clear();
+    document.location = "/";
+</script>
+{% endif %}
+
+
+{% endblock %}
+
+
+{% block js %}
+
+
+<script>
+
+
+    if (localStorage.getItem('cart') == null) {
+        var cart = {};
+    }
+    else {
+        cart = JSON.parse(localStorage.getItem('cart'));
+    }
+    var sum = 0;
+    if ($.isEmptyObject(cart)) {
+        MyStr = `
+        <p class = 'mx-5'><b> Your Cart is empty please add item for cheacking out</b></p>
+        `
+
+        $('#item').append(MyStr);
+    }
+    else {
+        for (item in cart) {
+            let name = cart[item][1];
+            let qty = cart[item][0];
+            let price = cart[item][2];
+            sum = sum + qty;
+            MyStr = `
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+        <div class="ms-2 me-auto">
+            <div class="fw-bold">${name}</div>
+            ${price}
+        </div>
+        <span class="badge bg-primary rounded-pill">${qty}</span>
+    </li>
+        `
+
+            $('#item').append(MyStr);
+        }
+    }
+
+    document.getElementById('cart').innerHTML = sum;
+
+    $('#itemsJson').val(JSON.stringify(cart));
+
+</script>
 {% endblock %}

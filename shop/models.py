@@ -16,3 +16,30 @@ class Product(models.Model):
 
     def __str__(self):
         return self.product_name
+
+
+class Contact(models.Model):
+    msg_id = models.AutoField(primary_key=True)
+    name = models.CharField(max_length=50)
+    email = models.CharField(max_length=50)
+    phone = models.CharField(max_length=15)
+    desc = models.CharField(max_length=700)
+
+    def __str__(self):
+        return self.name
+
+
+class Order(models.Model):
+    order_id = models.AutoField(primary_key=True)
+    item_json = models.CharField(max_length=5000)
+    name = models.CharField(max_length=100)
+    email = models.CharField(max_length=100)
+    phone = models.CharField(max_length=100)
+    address1 = models.CharField(max_length=100)
+    address2 = models.CharField(max_length=100)
+    city = models.CharField(max_length=100)
+    state = models.CharField(max_length=100)
+    zip_code = models.CharField(max_length=10)
+
+    def __str__(self):
+        return self.name
