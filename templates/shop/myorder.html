@@ -55,8 +55,29 @@
         <hr>
         {% endif %}
         {% endif %}
+
         {% endfor %}
     </a>
+</div>
+
+
+{% empty %}
+
+<div class="empty">
+    <div class="heading"
+        style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
+        <h2>Currently Unavailable</h2>
+    </div>
+
+    <div style="display: block; margin-right: 30px; text-align: center; margin: 0 auto;">
+        <a href="/" style="text-decoration: none;">
+            <button type="button" class="btn btn-primary btn-sm">Go to Home !!</button>
+        </a>
+        <a href="" style="text-decoration: none;">
+            <button type="button" class="btn btn-secondary btn-sm">Small button</button>
+        </a>
+    </div>
+
 </div>
 
 {% endfor %}
