@@ -18,7 +18,7 @@ class Product(models.Model):
         return self.product_name
 
 
-class Contact(models.Model):
+class Suggestions(models.Model):
     msg_id = models.AutoField(primary_key=True)
     name = models.CharField(max_length=50)
     email = models.CharField(max_length=50)

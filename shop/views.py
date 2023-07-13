@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product, Contact, Order, OrderUpdate
+from .models import Product, Suggestions, Order, OrderUpdate
 
 
 def index(request):
@@ -30,7 +30,7 @@ def contact(request):
         phone = request.POST['phone']
         desc = request.POST['desc']
 
-        MyMessage = Contact(name=name, email=email, phone=phone, desc=desc)
+        MyMessage = Suggestions(name=name, email=email, phone=phone, desc=desc)
         MyMessage.save()
 
     return render(request, 'shop/contact.html')
