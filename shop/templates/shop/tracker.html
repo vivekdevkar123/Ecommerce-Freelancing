@@ -1,12 +1,430 @@
 {% extends 'base.html' %}
 
+
 {% block title %} Welcome {% endblock %}
+
+{%block css%}
+
+<style>
+    .order-successful-text {
+        font-family: Oswald;
+        font-size: 2.25em;
+        font-weight: bold;
+        color: #444444;
+        text-align: center;
+    }
+
+    .track-your-order {
+        padding-top: 20px;
+        padding-left: 0px;
+    }
+
+    .arriving-in-header {
+        padding-top: 20px;
+        padding-left: 0px;
+    }
+
+    .main-div {
+        background-color: #f5f5f5;
+    }
+
+    .order-status-div {
+        background-color: #ffffff;
+        box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
+        margin: 20px;
+    }
+
+    .order-placed-image {
+        display: block;
+        margin: auto;
+    }
+
+    .order-status-text {
+        text-align: center;
+        margin-top: 10px;
+        font-family: Oswald;
+        font-size: 2.25em;
+        font-weight: bold;
+        text-align: center;
+        color: #4cb209;
+    }
+
+    .order-id {
+        text-align: center;
+        font-family: Lato;
+        font-size: 1em;
+        font-weight: bold;
+        text-align: center;
+        color: #4a4a4a;
+    }
+
+    .progress-bar {
+        width: 60%;
+        height: 1px;
+        background-color: #d55e57;
+    }
+
+    .order-received {
+        width: 50px;
+        height: 50px;
+        background: url(https://d30mle0t4iy75h.cloudfront.net/website/track-order-status-1.png);
+    }
+
+    .track-process {
+        position: relative;
+    }
+
+    .customer-details {
+        box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
+        padding-left: 20px;
+        font-family: Lato;
+        font-size: 1em;
+        font-weight: 500;
+        background-color: #ffffff;
+        border-top: solid 1px #979797;
+        padding-top: 10px;
+    }
+
+    .delivery-text {
+        font-family: Lato;
+        font-size: 17px;
+        font-weight: 500;
+        color: #000000;
+    }
+
+    .delivery-address {
+        font-family: Lato;
+        font-size: 1em;
+        color: #4a4a4a;
+    }
+
+    .consumer-phonenumber {
+        font-family: Lato;
+        font-size: 1em;
+        color: #000000;
+        padding-bottom: 10px;
+    }
+
+    .arriving-in-details {
+        box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
+        background-color: #ffffff;
+    }
+
+    .arriving-in-details li {
+        border-bottom: solid 1px #979797;
+    }
+
+    .arriving-in-details ul {
+        list-style-type: none;
+        padding: 0px;
+    }
+
+    .delivery-time {
+        font-family: Oswald;
+        font-size: 1.5em;
+        font-weight: 500;
+        color: #000000;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .delivery-boy-num {
+        font-family: OpenSans;
+        font-size: 1.5em;
+        font-weight: bold;
+        text-align: center;
+        color: #cb352b;
+        padding: 5px;
+    }
+
+    .live-tracking-btn {
+        font-family: OpenSans;
+        font-size: 1.5em;
+        font-weight: bold;
+        color: #cb352b;
+        text-align: center;
+        padding: 5px;
+    }
+
+    .order-information-header {
+        font-family: Lato;
+        font-size: 1em;
+        font-weight: 500;
+        color: #000000;
+        margin-top: 20px;
+    }
+
+    .order-information-div {
+        box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
+        background-color: #ffffff;
+    }
+
+    .orderId {
+        font-family: Lato;
+        font-size: 1em;
+        font-weight: bold;
+        color: #4a4a4a;
+        padding-top: 10px;
+        padding-left: 15px;
+    }
+
+    .ordered-time {
+        font-family: Lato;
+        font-size: 1em;
+        color: #4a4a4a;
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-bottom: 5px;
+    }
+
+    .item-container-div {
+        box-shadow: 0 2px 2px 0 rgba(181, 181, 181, 0.5);
+        background-color: #ffffff;
+    }
+
+    .item-container-div ul {
+        list-style-type: none;
+        padding: 0px;
+    }
+
+    .item-container-div li {
+        border-bottom: solid 1px #979797;
+    }
+
+    .item-container-div p {
+        font-family: Lato;
+        font-size: 1em;
+        color: #000000;
+        padding: 0px;
+        margin: 0px;
+    }
+
+    .item-container-div quantity {
+        font-family: Lato;
+        font-size: 0.1em;
+        color: #787878;
+    }
+
+    .item-list-div {
+        padding-top: 5px;
+        padding-left: 15px;
+        padding-bottom: 5px;
+    }
+
+    .combo-item {
+        display: block;
+        margin-left: 5px;
+    }
+
+    .order-status-animation {
+        list-style-type: none;
+        padding: 0px;
+        width: 100%;
+        display: table;
+        table-layout: fixed;
+    }
+
+    .order-status-animation img {
+        width: 50px;
+    }
+
+    .order-status-animation p {
+        font-family: Lato;
+        font-size: 1em;
+        margin-top: 10px;
+        color: #ce453b;
+        word-break: break-word;
+    }
+
+    .order-status-animation li {
+        display: inline-block;
+        padding-left: 10%;
+        display: table-cell;
+        width: auto;
+        text-align: center;
+    }
+
+    .order-status-animation li:first-child {
+        padding-left: 0px;
+    }
+
+    @media screen and (max-width: 640px) {
+        .order-status-animation p {
+            font-size: 0.9em;
+        }
+    }
+
+    .order-status-animation li {
+        position: relative;
+    }
+
+    .order-placed:after {
+        position: absolute;
+        left: calc(90% - 60px);
+        top: 20px;
+        content: " ";
+        width: 160px;
+        height: 1px;
+        border: solid 1px #cb352b;
+    }
+
+    #progress-bar {
+        display: table;
+        width: 100%;
+        margin: 0;
+        padding: 15px 15px 0;
+        table-layout: fixed;
+        width: 100%;
+        counter-reset: step;
+    }
+
+    #progress-bar li {
+        list-style-type: none;
+        display: table-cell;
+        width: 20%;
+        float: left;
+        font-size: 16px;
+        position: relative;
+        text-align: center;
+    }
+
+    #progress-bar li:before {
+        width: 50px;
+        height: 50px;
+        color: #212121;
+        content: counter(step);
+        counter-increment: step;
+        line-height: 50px;
+        font-size: 18px;
+        border: 1px solid #efefef;
+        display: block;
+        text-align: center;
+        margin: 0 auto 10px auto;
+        border-radius: 50%;
+        background-color: #fff;
+    }
+
+    #progress-bar li:after {
+        width: 100%;
+        height: 10px;
+        content: "";
+        position: absolute;
+        background-color: #fff;
+        top: 25px;
+        left: -50%;
+        z-index: -1;
+    }
+
+    #progress-bar li:first-child:after {
+        content: none;
+    }
+
+    #progress-bar li.step-done {
+        color: #000000;
+    }
+
+    #progress-bar li.step-done:before {
+        border-color: #41f55f;
+        background-color: #41f55f;
+        color: #fff;
+        content: "";
+        font-family: "FontAwesome";
+    }
+
+    #progress-bar li.step-done+li:after {
+        background-color: #41f55f;
+    }
+
+    #progress-bar li.step-active {
+        color: #000000;
+    }
+
+    #progress-bar li.step-active:before {
+        border-color: #41f55f;
+        color: #000000;
+        font-weight: 700;
+    }
+</style>
+{%endblock%}
+
+
 
 {% block content %}
 
 
 
-<h1>This is tracker page..</h1>
+<p class="order-successful-text mx-3 my-3"> TRACK YOUR ORDER </p>
+<div class="main-div col-md-12 col-lg-12" style="display: flex; margin: auto;">
+    <div class="track-order-div col-md-8 col-lg-8 col-sm-12 col-xs-12">
+        <p class="arriving-in-header" style="margin-left: 20px;"> YOUR ORDER STATUS </p>
+        <div class="order-status-div" style="height: 35vh; padding: 20px;">
+            <p class="order-status-text"> YOUR ORDER IS ON THE WAY </p>
+            <p class="order-id"> Order id: 12312</p>
+
+
+            <ol id="progress-bar">
+                <li class="step-done">Order Placed</li>
+                <li class="step-done">Order Shipped</li>
+                <li class="step-todo">Out For Delivery</li>
+                <li class="step-todo">Delivered</li>
+            </ol>
+
+        </div>
+
+        <p class="arriving-in-header" style="margin-left: 20px;"> DELIVERY DETAILS </p>
+        <div class="customer-details" style="margin-left: 20px; width: 97%; padding: 10px;">
+            <p>Name : Name of customer</p>
+            <p> Contact Number : +91 9632682370</p>
+            <p>email : email@gamil.com</p>
+            <p> address of delevery </p>
+        </div>
+    </div>
+
+
+    <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
+
+        <p class="order-information-header"> ORDER INFORMATION </p>
+        <div class="order-information-div" style="width: 97%;">
+            <p class="orderId"> Order id: 12345 </p>
+            <p class="ordered-time"> Order placed:12.23, August 15 1947 </p>
+        </div>
+        <div class="item-container-div" style="width: 97%;">
+            <ul>
+                <li>
+                    <div class="item-list-div">
+                        <p> ATB Combo <span class="quantity"> * 2</span> </p>
+                        <span class="combo-item"> item 1 </span>
+                        <span class="combo-item"> item 2 </span>
+                        <span class="combo-item"> item 3 </span>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-list-div">
+                        <p> ATB <span class="quantity"> * 2</span> </p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+        <p class="arriving-in-header"> ARRIVING ON </p>
+        <div class="arriving-in-details" style="width: 97%;">
+            <ul>
+                <li>
+                    <p class="delivery-time"> 59 mins</p>
+                </li>
+                <li>
+                    <p class="delivery-boy-num"> Call Delivery Executive </p>
+                </li>
+                <li>
+                    <p class="live-tracking-btn"> Live Track your Order </p>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+
 
 
 {% endblock %}

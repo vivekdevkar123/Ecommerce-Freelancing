@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from .models import Product, Contact, Order
+from .models import Product, Contact, Order, OrderUpdate
 
 
 def index(request):
@@ -73,6 +73,8 @@ def checkout(request):
 
         order.save()
 
+        update = OrderUpdate(order_id=order.order_id)
+        update.save()
         thank = True
         id = order.order_id
         return render(request, 'shop/checkout.html', {'thank': thank, 'id': id})

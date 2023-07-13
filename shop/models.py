@@ -1,5 +1,5 @@
 from django.db import models
-from .choices import PRODUCT_CATEGORY
+from .choices import PRODUCT_CATEGORY, ORDER_STATUS
 
 # Create your models here.
 
@@ -43,3 +43,14 @@ class Order(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class OrderUpdate(models.Model):
+    update_id = models.AutoField(primary_key=True)
+    order_id = models.CharField(max_length=20)
+    order_status = models.CharField(
+        max_length=20, choices=ORDER_STATUS, default=ORDER_STATUS[0])
+    timeStamp = models.DateField(auto_now_add=True)
+
+    def __str__(self):
+        return "update id : " + str(self.update_id) + " order id : " + self.order_id
