@@ -1,11 +1,10 @@
 $('.owl-carousel').owlCarousel({
     loop: false,
-    margin: 5,
+    margin: 8,
     nav: true,
     dots: false,
     autoplay: false,
-    // autoplayTimeout: 3000,
-    stagePadding: 50,
+    // stagePadding: 0,
     responsive: {
         0: {
             items: 1

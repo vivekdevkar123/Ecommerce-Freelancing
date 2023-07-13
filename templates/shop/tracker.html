@@ -357,26 +357,54 @@
 <div class="main-div col-md-12 col-lg-12" style="display: flex; margin: auto;">
     <div class="track-order-div col-md-8 col-lg-8 col-sm-12 col-xs-12">
         <p class="arriving-in-header" style="margin-left: 20px;"> YOUR ORDER STATUS </p>
-        <div class="order-status-div" style="height: 35vh; padding: 20px;">
+        <div class="order-status-div" style="height: 35vh; padding: 20px; border: 2px solid black;">
             <p class="order-status-text"> YOUR ORDER IS ON THE WAY </p>
-            <p class="order-id"> Order id: 12312</p>
+            <p class="order-id"> Order id: {{order.order_id}} </p>
 
 
+            {% if order.order_status == "Order Placed" %}
+            <ol id="progress-bar">
+                <li class="step-done">Order Placed</li>
+                <li class="step-todo">Order Shipped</li>
+                <li class="step-todo">Out For Delivery</li>
+                <li class="step-todo">Delivered</li>
+            </ol>
+            {%endif%}
+
+            {% if order.order_status == "Order Shipped" %}
             <ol id="progress-bar">
                 <li class="step-done">Order Placed</li>
                 <li class="step-done">Order Shipped</li>
                 <li class="step-todo">Out For Delivery</li>
                 <li class="step-todo">Delivered</li>
             </ol>
+            {%endif%}
 
+            {% if order.order_status == "Out For Delivery" %}
+            <ol id="progress-bar">
+                <li class="step-done">Order Placed</li>
+                <li class="step-done">Order Shipped</li>
+                <li class="step-done">Out For Delivery</li>
+                <li class="step-todo">Delivered</li>
+            </ol>
+            {%endif%}
+
+            {% if order.order_status == "Delivered" %}
+            <ol id="progress-bar">
+                <li class="step-done">Order Placed</li>
+                <li class="step-done">Order Shipped</li>
+                <li class="step-done">Out For Delivery</li>
+                <li class="step-done">Delivered</li>
+            </ol>
+            {%endif%}
         </div>
 
         <p class="arriving-in-header" style="margin-left: 20px;"> DELIVERY DETAILS </p>
-        <div class="customer-details" style="margin-left: 20px; width: 97%; padding: 10px;">
-            <p>Name : Name of customer</p>
-            <p> Contact Number : +91 9632682370</p>
-            <p>email : email@gamil.com</p>
-            <p> address of delevery </p>
+        <div class="customer-details" style="margin-left: 20px; width: 97%; padding: 10px; border: 2px solid black;">
+            <p>Name : {{order.name}}</p>
+            <p> Contact Number : {{order.phone}}</p>
+            <p>email : {{order.email}}</p>
+            <p> {{order.address1}} {{order.address2}} {{order.city}} {{order.state}} {{order.zip_code}}</p>
         </div>
     </div>
 
@@ -384,46 +412,55 @@
     <div class="col-md-4 col-lg-4 col-sm-12 col-xs-12">
 
         <p class="order-information-header"> ORDER INFORMATION </p>
-        <div class="order-information-div" style="width: 97%;">
-            <p class="orderId"> Order id: 12345 </p>
-            <p class="ordered-time"> Order placed:12.23, August 15 1947 </p>
+        <div class="order-information-div" style="width: 97%; border: 2px solid black;">
+            <p class="orderId"> Order id: {{order.order_id}} </p>
+            <p class="ordered-time"> Order placed: {{order.order_date}} </p>
         </div>
-        <div class="item-container-div" style="width: 97%;">
+        <div class="item-container-div my-2" style="width: 97%; border: 2px solid black;">
             <ul>
                 <li>
                     <div class="item-list-div">
-                        <p> ATB Combo <span class="quantity"> * 2</span> </p>
-                        <span class="combo-item"> item 1 </span>
-                        <span class="combo-item"> item 2 </span>
-                        <span class="combo-item"> item 3 </span>
-                    </div>
-                </li>
-                <li>
-                    <div class="item-list-div">
-                        <p> ATB <span class="quantity"> * 2</span> </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
+                        <div class="heading"
+                            style="display: flex; margin: 20px; font-size: large; font-weight: bolder;">
+                            <p> Billing Details</p>
+                        </div>
 
-        <p class="arriving-in-header"> ARRIVING ON </p>
-        <div class="arriving-in-details" style="width: 97%;">
-            <ul>
-                <li>
-                    <p class="delivery-time"> 59 mins</p>
+                        <table class="table table-secondary table-striped-columns">
+                            <thead>
+                                <tr>
+                                    <th scope="col">Product Name</th>
+                                    <th scope="col">Qty</th>
+                                    <th scope="col">price</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                {% for item in product %}
+                                <tr>
+                                    <td><a href="" style="text-decoration: none; color: black;">{{ item.1 }}</a></td>
+                                    <td>{{ item.0 }}</td>
+                                    <td>{{ item.2 }}</td>
+                                </tr>
+                                {%endfor%}
+                                <tr>
+                                    <td>Total Bill : (in Rs. )</td>
+                                    <td></td>
+                                    <td><span class="quantity mx-2" style="float: right;">{{total_bill}}</span></td>
+                                </tr>
+                            </tbody>
+
+                        </table>
+
+                    </div>
                 </li>
-                <li>
-                    <p class="delivery-boy-num"> Call Delivery Executive </p>
-                </li>
-                <li>
-                    <p class="live-tracking-btn"> Live Track your Order </p>
-                </li>
+
+
             </ul>
         </div>
 
     </div>
-</div>
 
+</div>
 
 
 

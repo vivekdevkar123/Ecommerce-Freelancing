@@ -17,10 +17,9 @@
         <div class="card" style="width: 18rem;">
             <img src="/media/{{ product.image }}" class="card-img-top" alt="..." height="200" width="500">
             <div class="card-body">
-                <h5 class="card-title" id="namepr{{product.product_id}}">{{ product.product_name }}
+                <h5 class="card-title" id="namepr{{product.product_id}}">{{ product.product_name | truncatewords:10}}
                 </h5>
-                <p class="card-text">{{ product.desc }}</p>
-                <p class="card-text" id="pricepr{{product.product_id}}">Price: {{ product.price }}Rs</p>
+                <p class="card-text" id="pricepr{{product.product_id}}">{{ product.price }}</p>
                 <span id="divpr{{ product.product_id }}" class="divpr">
                     <button class="btn btn-outline-success m-2 cart" id="pr{{ product.product_id }}">Add To
                         Cart</button>
