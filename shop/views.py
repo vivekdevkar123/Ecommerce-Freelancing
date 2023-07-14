@@ -47,9 +47,21 @@ def contact(request):
     return render(request, 'shop/contact.html')
 
 
-@login_required(login_url='login')
 def search(request):
-    return render(request, 'shop/search.html')
+    products = Product.objects.all()
+    query = request.GET['query']
+    if len(query) > 78 or len(query) == 0:
+        allProduct = []
+    else:
+        allproductTitle = Product.objects.filter(product_name__icontains=query)
+        allproductCategory = Product.objects.filter(category__icontains=query)
+        allProduct = allproductTitle.union(allproductCategory)
+
+    data = {
+        'posts': allProduct,
+        'query': query,
+    }
+    return render(request, 'shop/search.html', data)
 
 
 @login_required(login_url='login')
