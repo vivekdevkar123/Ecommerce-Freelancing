@@ -4,6 +4,29 @@
 
 {% block content %}
 
+<style>
+    #totalBill {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 15px;
+        margin: 15px;
+        font-size: 16px;
+        border: 1px solid #ccc;
+        background-color: #f9f9f9;
+    }
+
+    .label {
+        font-weight: bold;
+    }
+
+    #billAmount {
+        color: #006400;
+        /* Adjust color as needed */
+    }
+</style>
+
+
 <div class="heading" style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
     <h2>Step 1 : Verify Your items</h2>
 </div>
@@ -12,6 +35,11 @@
 <ol class="list-group list-group-numbered my-3" id="item">
 
 </ol>
+
+<div id="totalBill">
+    <span class="label">Total Bill:</span>
+    <b><span id="billAmount">$0.00</span><span> Rs.</span></b>
+</div>
 
 
 <div class="heading" style="padding: 20px; margin: 20px; font-weight: bolder; background-color: rgb(207, 243, 243);">
@@ -89,6 +117,7 @@
         cart = JSON.parse(localStorage.getItem('cart'));
     }
     var sum = 0;
+    let total = 0;
     if ($.isEmptyObject(cart)) {
         MyStr = `
         <p class = 'mx-5'><b> Your Cart is empty please add item for cheacking out</b></p>
@@ -102,20 +131,23 @@
             let qty = cart[item][0];
             let price = cart[item][2];
             sum = sum + qty;
-            MyStr = `
-        <li class="list-group-item d-flex justify-content-between align-items-start">
-        <div class="ms-2 me-auto">
-            <div class="fw-bold">${name}</div>
-            ${price}
-        </div>
-        <span class="badge bg-primary rounded-pill">${qty}</span>
-    </li>
-        `
-
-            $('#item').append(MyStr);
+            total = total + parseInt(price) * qty;
+            if (qty != 0) {
+                MyStr = `
+            <li class="list-group-item d-flex justify-content-between align-items-start">
+            <div class="ms-2 me-auto">
+                <div class="fw-bold">${name}</div>
+                Rs. ${price}
+            </div>
+            <span class="badge bg-primary rounded-pill">${qty}</span>
+        </li>
+            `
+                $('#item').append(MyStr);
+            }
         }
     }
 
+    document.getElementById('billAmount').innerHTML = total;
     document.getElementById('cart').innerHTML = sum;
 
     $('#itemsJson').val(JSON.stringify(cart));

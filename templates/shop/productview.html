@@ -110,7 +110,7 @@
         color: #fff;
     }
 
-    .btn {
+    .btn1 {
         width: 48%;
         padding: 20px;
         border-radius: 5px;
@@ -123,7 +123,7 @@
         text-transform: capitalize;
     }
 
-    .cart-btn {
+    .cart-btn1 {
         margin-right: 2%;
         background: #383838;
         color: #fff;
@@ -162,7 +162,7 @@
 
         <p class="product-sub-heading">SHOPING IS FUN</p>
 
-        <!-- <input type="radio" name="size" value="s" checked hidden id="s-size">
+        <input type="radio" name="size" value="s" checked hidden id="s-size">
         <label for="s-size" class="size-radio-btn check">s</label>
         <input type="radio" name="size" value="m" hidden id="m-size">
         <label for="m-size" class="size-radio-btn">m</label>
@@ -171,24 +171,17 @@
         <input type="radio" name="size" value="xl" hidden id="xl-size">
         <label for="xl-size" class="size-radio-btn">xl</label>
         <input type="radio" name="size" value="xxl" hidden id="xxl-size">
-        <label for="xxl-size" class="size-radio-btn">xxl</label> -->
+        <label for="xxl-size" class="size-radio-btn">xxl</label>
 
-        <button class="btn cart-btn">Add To Cart</button>
-        <button class="btn">Buy Now</button>
+        <button class="btn1 cart-btn1">Add To Cart</button>
+        <button class="btn1">Buy Now</button>
     </div>
 </section>
 
 
 <section class="detail-des">
     <h2 class="heading">description</h2>
-    <p class="des">Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi, enim sequi inventore dignissimos
-        nam consequatur esse veritatis sapiente temporibus quaerat minus veniam quasi quibusdam saepe? Ad alias
-        consequuntur mollitia incidunt provident accusamus quas soluta doloribus sint? Suscipit corrupti illum maxime
-        tempore blanditiis ea laboriosam saepe cumque? Natus mollitia numquam quibusdam officia, repellat facere error
-        consectetur voluptates delectus sint dolorem consequuntur quo eveniet odio quos alias facilis inventore sapiente
-        asperiores laudantium officiis ut. Beatae, fugiat ullam voluptas consequuntur quas cumque fuga officia, sunt
-        aliquid enim expedita autem? Velit, eum libero facere quasi, ut ducimus id possimus delectus at assumenda hic
-        quas.</p>
+    <p class="des">{{product.desc | safe}}</p>
 </section>
 
 
