@@ -1,4 +1,4 @@
-{%load static%}
+<!-- {%load static%}
 
 
 <!DOCTYPE html>
@@ -157,6 +157,128 @@
             form_fields[field].className += ' form-control'
         }
     </script>
+</body>
+
+</html> -->
+
+
+
+
+
+
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Get Started with us</title>
+    <link rel="stylesheet" href="{% static 'css/accounts.css' %}">
+
+</head>
+
+<body>
+    <main>
+        <div class="box" style="height: 690px;">
+            <div class="inner-box">
+                <div class="forms-wrap">
+
+
+                    <form action="/users/signup/" method="post" class="sign-in-form">
+
+                        {% csrf_token %}
+
+                        <div class="logo">
+                            <img src="{% static 'logo.png' %}" alt="easyclass" />
+                            <h4>MY-SHOP</h4>
+                        </div>
+
+                        <div class="heading">
+                            <h2>Get Started</h2>
+                            <h6>Already have an account?</h6>
+                            <a href="/users/login" class="toggle">Sign in</a>
+                        </div>
+
+                        <div class="actual-form">
+                            <div class="input-wrap">
+                                <input type="text" name="fname" class="input-field fname" required />
+                                <label>First Name</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="text" name="lname" class="input-field fname" required />
+                                <label>Last Name</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="text" name="username" class="input-field username" required />
+                                <label>Username</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="password" name="password" class="input-field password" required />
+                                <label>Password</label>
+                            </div>
+
+                            <div class="input-wrap">
+                                <input type="email" name="email" class="input-field email" required />
+                                <label>Email</label>
+                            </div>
+
+                            <!-- <input type="submit" value="Sign Up" class="sign-btn" /> -->
+                            <button type="submit" class="sign-btn">Create Account</button>
+
+                            <p class="text">
+                                By signing up, I agree to the
+                                <a href="#">Terms of Services</a> and
+                                <a href="#">Privacy Policy</a>
+                            </p>
+                        </div>
+                    </form>
+
+                    {% for message in messages %}
+                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                        <strong>Message:</strong> {{ message }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+
+                </div>
+
+                <div class="carousel">
+                    <div class="images-wrapper">
+                        <img src="{% static 'img/header_back.png' %}" class="image img-1 show" alt="" />
+                        <img src="{% static 'img/header_back.png' %}" class="image img-2" alt="" />
+                    </div>
+
+                    <div class="text-slider">
+                        <div class="text-wrap">
+                            <div class="text-group">
+                                <h2>Let's Go . . .</h2>
+
+                                <h2>Explore New Fashion Treand with us . . .</h2>
+                            </div>
+                        </div>
+
+                        <div class="bullets">
+                            <span class="active" data-value="1"></span>
+
+                            <span data-value="2"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Javascript file -->
+
+    <script src="{% static 'js/accounts.js' %}"></script>
 </body>
 
 </html>

@@ -150,6 +150,9 @@
         <li class="link-item"><a href="/about" class="link">About Us</a></li>
         <li class="link-item"><a href="/contact" class="link">Contact Us</a></li>
         <li class="link-item"><a href="/order" class="link">My Order</a></li>
-        <li class="link-item"><a href="#" class="link">Other</a></li>
+
+        {% if user.is_authenticated %}
+        <li class="link-item"><a href="users/logout" class="link">Log Out</a></li>
+        {% endif %}
     </ul>
 </nav>
